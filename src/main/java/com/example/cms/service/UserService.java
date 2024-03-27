@@ -12,7 +12,5 @@ public interface UserService {
 	
 	public ResponseEntity<ResponseStructure<UserResponce>> softDelete(String email);
 
-	public ResponseEntity<ResponseStructure<UserResponce>> findByUniqueUser(String email);
-
 	
 }

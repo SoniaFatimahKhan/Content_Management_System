@@ -40,10 +40,9 @@ public class UserController {
 		return userService.softDelete(userId);	 
 	}
 	
-	@GetMapping("/users/{userId}")
-	public ResponseEntity<ResponseStructure<UserResponce>> findByUniqueUser(@RequestParam String userId){
-		return userService.findByUniqueUser(userId);
-	}
+	
+	
+
 
 }
 

@@ -1,8 +1,6 @@
 package com.example.cms.serviceimpl;
 
 
-
-
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -12,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.cms.dto.UserRequest;
 import com.example.cms.dto.UserResponce;
-
+import com.example.cms.exceptions.SQLDataIntegrityViolationException;
 import com.example.cms.exceptions.UserAlreadyExistByEmailException;
 import com.example.cms.exceptions.UserNotFoundException;
 import com.example.cms.model.User;
@@ -21,7 +19,7 @@ import com.example.cms.service.UserService;
 import com.example.cms.utility.ResponseStructure;
 
 import lombok.AllArgsConstructor;
-
+import lombok.NoArgsConstructor;
 
 @Service
 @AllArgsConstructor
@@ -106,37 +104,8 @@ public class UserSeviceImpl implements UserService {
 		return user;
 	}
 
-	//	FINDING USER BY UNIQUE USER
-
-	@Override
-	public ResponseEntity<ResponseStructure<UserResponce>> findByUniqueUser(String email) {
-		Optional<User> optionalUser = repository.findByEmail(email);
-		if (optionalUser.isPresent()){ User user = optionalUser.get();
-
-		repository.save(user);
-
-		return ResponseEntity.ok(structure.setStatusCode(HttpStatus.OK.value())
-				.setMessage("User found successfully")
-				.setData(mapToUserResponce(user)));
-		} else{ 
-			throw new UserNotFoundException("User with ID " + email + " not found.");
-			}
-		}
-		
-				
-		/*return repository.findByEmail(email).map(user-> {
-			UserResponce responce= mapToUserResponce(user);
-		
-				ResponseEntity.ok(structure.setStatusCode(HttpStatus.OK.value())
-				.setMessage("User with ID " + email + " soft deleted successfully.")
-				.setData(mapToUserResponse(user)));
-	}*/
 	
 
+
+
 }
-
-
-
-
-
-
