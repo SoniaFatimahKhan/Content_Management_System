@@ -10,4 +10,7 @@ public interface UserService {
 
 	public ResponseEntity<ResponseStructure<UserResponce>> userRegister(UserRequest user);
 	
+	public ResponseEntity<ResponseStructure<UserResponce>> softDelete(String email);
+
+	
 }

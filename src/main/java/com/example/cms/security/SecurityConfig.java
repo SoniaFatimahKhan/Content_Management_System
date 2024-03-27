@@ -22,7 +22,7 @@ import lombok.AllArgsConstructor;
 public class SecurityConfig  {
 
 	private CustomUserDetailService customUserDetailService;
-	
+
 	@Bean
 	AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -30,20 +30,24 @@ public class SecurityConfig  {
 		provider.setUserDetailsService(customUserDetailService);
 		return provider;
 	}
-	
+
 	@Bean
 	PasswordEncoder passwordEncoder() {
-		 BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(); //It is more secure and widely used algorithm thst's why we using this.
-		
-		 return bCryptPasswordEncoder;
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(); //It is more secure and widely used algorithm thst's why we using this.
+
+		return bCryptPasswordEncoder;
 	}
-	
-	
+
+
 	@Bean
-     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 		return http.csrf(csrf-> csrf.disable())
-				.authorizeHttpRequests(auth->auth.requestMatchers("/users/register").permitAll()
-						.anyRequest().authenticated()).formLogin(Customizer.withDefaults()).build();
+				.authorizeHttpRequests(auth->auth.requestMatchers("/users/register","/users/{userId}")
+						.permitAll()
+						.anyRequest()
+						.authenticated())
+				.formLogin(Customizer.withDefaults())
+				.build();
 	}
-	
+
 }

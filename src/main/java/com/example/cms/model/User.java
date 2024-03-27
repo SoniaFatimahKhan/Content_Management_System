@@ -36,6 +36,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 	private String userName;
+	@Column(unique = true)
 	private String email;
 	private String password;
 	
@@ -45,5 +46,8 @@ public class User {
 	
 	@LastModifiedDate
 	private LocalDateTime lastModifiedAt;
+	
+	
+	private boolean deleted=false;
 	
 }
