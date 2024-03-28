@@ -41,8 +41,6 @@ public class BlogServiceImpl implements BlogService {
 					throw new TitleNotAvailableException("Failed to create Blog because title should be unique");
 			if(blogRequest.getTopics().length()<1)
 				throw new TopicNotSpecifiedException("Failed to create Blog because topic is not mentioned");
-//			Blog blog =blogrepository.save(mapToBlogEntity(blogRequest, new Blog()));
-//			blog.getUserList().add(user);
 			Blog blog= mapToBlogEntity(blogRequest, new Blog());
 			blog.setUserList(Arrays.asList(user));
 			blogrepository.save(blog);
@@ -68,19 +66,6 @@ public class BlogServiceImpl implements BlogService {
 		 * " not found.")); }
 		 */
 
-	/*
-	 * Optional<User> byEmail=userrepository.findByEmail(email);
-	 * if(byEmail.isPresent()) {
-	 * 
-	 * User user=byEmail.get(); Blog blog = mapToBlogEntity(blogRequest, new
-	 * Blog()); user.getBlogList().add(blog); blogrepository.save(blog);
-	 * 
-	 * return ResponseEntity.ok(structure.setStatusCode(HttpStatus.OK.value())
-	 * .setMessage("User with ID " + email + " has been found.")
-	 * .setData(mapToBlogResponse(blog)));
-	 * 
-	 * } else { throw new UserNotFoundException("Not found.."); } }
-	 */
 	
 	private Blog mapToBlogEntity(BlogRequest blogRequest, Blog blog) {
 		blog.setTitle(blogRequest.getTitle());
