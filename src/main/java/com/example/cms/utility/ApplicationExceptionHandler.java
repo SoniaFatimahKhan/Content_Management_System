@@ -2,13 +2,13 @@ package com.example.cms.utility;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.example.cms.exceptions.UserAlreadyExistByEmailException;
 import com.example.cms.exceptions.UserNotFoundException;
+import com.example.cms.exceptions.handleInternalServerError;
 
 import lombok.AllArgsConstructor;
 
@@ -34,5 +34,10 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 	public ResponseEntity<ErrorStructure<String>> UserNotFoundExceptionHandler(UserNotFoundException ex){
 		return errorResponce(HttpStatus.BAD_REQUEST, ex.getMessage(), "User is NOT FOUND...");
 	}
+	
 
+//    public ResponseEntity<ResponseStructure<String>> handleInternalServerError(handleInternalServerError ex) {
+//    	return errorResponce(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "An error occurred while creating the blog");
+//      }
+	
 }

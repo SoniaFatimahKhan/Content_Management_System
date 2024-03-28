@@ -5,8 +5,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-
-public class SQLDataIntegrityViolationException extends RuntimeException{
-
+@SuppressWarnings("serial")
+public class handleInternalServerError {
 	private String message;
+
 }

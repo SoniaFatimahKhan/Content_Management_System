@@ -13,11 +13,11 @@ import io.swagger.v3.oas.models.info.Info;
 public class ApplicationDoc {
 	
 	Contact contact() {
-		return new Contact().name("Rudra").url("instagram.in").email("rudysharma46@gmail.com");
+		return new Contact().name("Sonia").url("instagram.in").email("soniask430@gmail.com");
 	}
 	
 	Info info() {
-		return new Info().title("Content-Management-System").description("Managing content for the user").version("v1.0")
+		return new Info().title("Content-Management-System").description("Managing Content for the user").version("v1.0")
 				.contact(contact());
 	}
 
