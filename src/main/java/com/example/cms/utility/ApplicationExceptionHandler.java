@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.example.cms.exceptions.TitleNotAvailableException;
+import com.example.cms.exceptions.TopicNotSpecifiedException;
 import com.example.cms.exceptions.UserAlreadyExistByEmailException;
 import com.example.cms.exceptions.UserNotFoundException;
 import com.example.cms.exceptions.handleInternalServerError;
@@ -39,5 +41,17 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 //    public ResponseEntity<ResponseStructure<String>> handleInternalServerError(handleInternalServerError ex) {
 //    	return errorResponce(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "An error occurred while creating the blog");
 //      }
+	
+	@ExceptionHandler
+	public ResponseEntity<ErrorStructure<String>> TitleNotAvailableExceptionHandler(TitleNotAvailableException ex){
+		return errorResponce(HttpStatus.BAD_REQUEST, ex.getMessage(), "Title is Not Avaialable...");
+	}
+	
+	@ExceptionHandler
+	public ResponseEntity<ErrorStructure<String>> TopicNotSpecifiedExceptionHandler(TopicNotSpecifiedException ex){
+		return errorResponce(HttpStatus.BAD_REQUEST, ex.getMessage(), "Topic has not been specified..");
+	}
+	
+	
 	
 }
